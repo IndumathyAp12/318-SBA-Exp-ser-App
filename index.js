@@ -3,6 +3,18 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
+const loggerMiddleware = (req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next(); // Call next to pass control to the next middleware function
+};
+
+const errorHandlerMiddleware = (err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+};
+
+app.use(loggerMiddleware);
+app.use(errorHandlerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,9 +45,10 @@ app.post('/api/submit', (req, res) => {
 
 // Root route handler
 app.get('/', (req, res) => {
-  res.send('Welcome to the Quiz App!');
+    res.send('Welcome to the Quiz App!');
 });
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
