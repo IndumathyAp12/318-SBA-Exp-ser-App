@@ -5,7 +5,7 @@ const PORT = 3000;
 // Middleware
 const loggerMiddleware = (req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    next(); // Call next to pass control to the next middleware function
+    next(); 
 };
 
 const errorHandlerMiddleware = (err, req, res, next) => {
@@ -18,12 +18,7 @@ app.use(errorHandlerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Quiz questions
-const questions = [
-    { id: 1, question: "What is 2 + 2?", answer: "4" },
-    { id: 2, question: "What is the capital of France?", answer: "Paris" },
-    
-];
+
 
 // Routes
 app.get('/api/questions', (req, res) => {
@@ -52,3 +47,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+

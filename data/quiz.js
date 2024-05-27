@@ -11,3 +11,11 @@ module.exports = {
   }
   
 };
+// Quiz questions
+// const questions = [
+//     { id: 1, question: "What is 2 + 2?", answer: "4" },
+//     { id: 2, question: "What is the capital of France?", answer: "Paris" },
+    
+// ];
+
+// module.exports = quiz;
