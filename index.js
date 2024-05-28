@@ -13,18 +13,23 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 };
 
+const authMiddleware = (req, res, next) => {
+    const { authorization } = req.headers;
+    if (authorization && authorization === "Bearer your-token") {
+        next();
+    } else {
+        res.status(403).send('Forbidden');
+    }
+};
+
 app.use(loggerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// View Engine
-app.set('view engine', 'ejs');
-app.set('views', './views');
-
-// Sample questions data
-let questions = [
-    { id: 1, question: 'What is 2+2?', answer: '4' },
-    { id: 2, question: 'What is the capital of France?', answer: 'Paris' }
+// Questions data
+const questions = [
+    { id: 1, question: "What is 2+2?", answer: "4" },
+    { id: 2, question: "What is the capital of France?", answer: "Paris" }
 ];
 
 // Routes
@@ -45,20 +50,20 @@ app.post('/api/submit', (req, res) => {
     }
 });
 
-// User routes
-const userRoutes = require('./routes/user');
-app.use('/users', userRoutes);
+// User Routes
+const userRoutes = require('./routes/userRoutes');
+const commentRoutes = require('./routes/commentRoutes');
+const quizRoutes = require('./routes/quizRoutes');
 
-// Comment routes
-const commentRoutes = require('./routes/comments');
-app.use('/comments', commentRoutes);
+app.use('/users', authMiddleware, userRoutes);
+app.use('/comments', authMiddleware, commentRoutes);
+app.use('/quizzes', authMiddleware, quizRoutes);
 
 // Root route handler
 app.get('/', (req, res) => {
     res.send('Welcome to the Quiz App!');
 });
 
-// Error handling middleware
 app.use(errorHandlerMiddleware);
 
 // Start the server
