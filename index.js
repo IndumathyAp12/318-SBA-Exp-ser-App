@@ -42,6 +42,7 @@ app.get('/api/questions', (req, res) => {
     res.json(questions);
 });
 
+// Route handler for /api/questions
 app.get('/api/questions', (req, res) => {
     const { category } = req.query;
 
@@ -51,8 +52,10 @@ app.get('/api/questions', (req, res) => {
         filteredQuestions = questions.filter(q => q.category === category);
     }
 
-    res.json(filteredQuestions);
+    // Render the questions using an EJS template
+    res.render('questions', { questions: filteredQuestions });
 });
+
 
 app.post('/api/submit', (req, res) => {
     const { id, answer } = req.body;
