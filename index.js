@@ -42,6 +42,18 @@ app.get('/api/questions', (req, res) => {
     res.json(questions);
 });
 
+app.get('/api/questions', (req, res) => {
+    const { category } = req.query;
+
+    // Filter questions by category if category parameter is provided
+    let filteredQuestions = questions;
+    if (category) {
+        filteredQuestions = questions.filter(q => q.category === category);
+    }
+
+    res.json(filteredQuestions);
+});
+
 app.post('/api/submit', (req, res) => {
     const { id, answer } = req.body;
     const question = questions.find(q => q.id === id);
