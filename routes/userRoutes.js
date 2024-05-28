@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const userData = require('../data/userData'); 
-const validateUserMiddleware = require('../middlewares/validateUserMiddleware');
 
 router.get('/', (req, res) => {
   const users = userData.getAllUsers();
@@ -43,3 +42,4 @@ router.delete('/:userId', (req, res) => {
 });
 
 module.exports = router;
+

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 
@@ -26,6 +27,10 @@ app.use(loggerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Set up EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Questions data
 const questions = [
     { id: 1, question: "What is 2+2?", answer: "4" },
@@ -50,13 +55,17 @@ app.post('/api/submit', (req, res) => {
     }
 });
 
+app.get('/addNewUser', (req, res) => {
+  res.render('addNewUser');
+});
+
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 
-app.use('/users', authMiddleware, userRoutes);
-app.use('/comments', authMiddleware, commentRoutes);
+app.use('/users',  userRoutes);
+app.use('/comments', commentRoutes);
 app.use('/quizzes', authMiddleware, quizRoutes);
 
 // Root route handler
@@ -70,3 +79,4 @@ app.use(errorHandlerMiddleware);
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
