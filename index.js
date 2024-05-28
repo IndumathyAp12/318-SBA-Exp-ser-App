@@ -56,8 +56,10 @@ app.post('/api/submit', (req, res) => {
 });
 
 app.get('/addNewUser', (req, res) => {
-  res.render('addNewUser');
-});
+    res.sendFile('addNewUser.html', {
+      root: path.join(__dirname, 'views')
+    });
+  });
 
 // User Routes
 const userRoutes = require('./routes/userRoutes');
