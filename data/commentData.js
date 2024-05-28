@@ -1,4 +1,4 @@
-const Comment = require('../models/Comment');
+const Comment = require('../models/comment');
 
 let comments = [];
 
@@ -9,5 +9,4 @@ module.exports = {
     comments.push(newComment);
     return newComment;
   }
-  
 };
