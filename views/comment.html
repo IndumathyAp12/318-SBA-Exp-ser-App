@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Comments</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Comments for Quiz <%= quizId %></h1>
+    <ul>
+      <% comments.forEach(comment => { %>
+        <li><%= comment.text %> by User <%= comment.userId %></li>
+      <% }); %>
+    </ul>
+    <form action="/comments" method="POST">
+      <input type="hidden" name="quizId" value="<%= quizId %>">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" required>
+      <br>
+      <label for="text">Comment:</label>
+      <textarea id="text" name="text" required></textarea>
+      <br>
+      <button type="submit">Add Comment</button>
+    </form>
+  </div>
+</body>
+</html>
