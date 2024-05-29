@@ -42,20 +42,16 @@ app.get('/api/questions', (req, res) => {
     res.json(questions);
 });
 
-// Route handler for /api/questions
 app.get('/api/questions', (req, res) => {
     const { category } = req.query;
 
-    // Filter questions by category if category parameter is provided
     let filteredQuestions = questions;
     if (category) {
         filteredQuestions = questions.filter(q => q.category === category);
     }
 
-    // Render the questions using an EJS template
     res.render('questions', { questions: filteredQuestions });
 });
-
 
 app.post('/api/submit', (req, res) => {
     const { id, answer } = req.body;
@@ -74,7 +70,7 @@ app.get('/addNewUser', (req, res) => {
     res.sendFile('addNewUser.html', {
       root: path.join(__dirname, 'views')
     });
-  });
+});
 
 // User Routes
 const userRoutes = require('./routes/userRoutes');
@@ -96,4 +92,3 @@ app.use(errorHandlerMiddleware);
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-

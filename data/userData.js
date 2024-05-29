@@ -1,6 +1,4 @@
-const User = require('../models/user');
-
-let users = [
+const users = [
   { id: 1, name: 'Roxine', email: 'rswate0@wix.com' },
   { id: 2, name: 'Fax', email: 'fnewson1@elpais.com' },
   { id: 3, name: 'Ariel', email: 'aanthon2@yahoo.co.jp' },
@@ -12,7 +10,7 @@ module.exports = {
   getAllUsers: () => users,
   getUserById: (id) => users.find(user => user.id === id),
   createUser: (name, email) => {
-    const newUser = new User(users.length + 1, name, email);
+    const newUser = { id: users.length + 1, name, email };
     users.push(newUser);
     return newUser;
   },
