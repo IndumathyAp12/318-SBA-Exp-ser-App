@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 router.get('/quiz/:quizId', (req, res) => {
   const quizId = parseInt(req.params.quizId);
   const comments = commentData.getCommentsByQuizId(quizId);
-  res.json(comments);
+  res.render('comments', { quizId, comments });  
 });
 
 router.post('/', (req, res) => {

@@ -18,7 +18,7 @@
                 </ul>
             </nav>
         </header>
-                <section id="quizList">
+        <section id="quizList">
             <h2>All Quizzes</h2>
             <ul>
                 <% quizzes.forEach(quiz => { %>
@@ -57,7 +57,7 @@
         <% if (showForm) { %>
         <section id="addQuiz">
             <h2>Create New Quiz</h2>
-            <form action="/quizzes" method="POST">
+            <form action="/quizData" method="POST">
                 <label for="question">Question:</label>
                 <input type="text" id="question" name="question" required>
                 <br>

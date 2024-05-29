@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const userData = require('../data/userData'); 
-const validateUserMiddleware = require('../middleware/validateUserMiddleware');
+const userData = require('../data/userData.js'); 
 
 router.get('/', (req, res) => {
   const users = userData.getAllUsers();
-  res.render('manageUsers',{users});
+  res.json(users);
 });
 
 router.get('/:userId', (req, res) => {
@@ -17,13 +16,13 @@ router.get('/:userId', (req, res) => {
   res.json(user);
 });
 
-router.post('/', validateUserMiddleware, (req, res) => {
+router.post('/', (req, res) => {
   const { name, email } = req.body;
   const newUser = userData.createUser(name, email);
   res.status(201).json(newUser);
 });
 
-router.put('/:userId', validateUserMiddleware, (req, res) => {
+router.put('/:userId', (req, res) => {
   const userId = parseInt(req.params.userId);
   const { name, email } = req.body;
   const updatedUser = userData.updateUser(userId, name, email);

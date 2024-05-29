@@ -6,5 +6,6 @@ module.exports = {
     const newQuiz = { id: quizzes.length + 1, userId, question, options, answer };
     quizzes.push(newQuiz);
     return newQuiz;
-  }
+  },
+  getQuizById: (id) => quizzes.find(quiz => quiz.id === id),
 };

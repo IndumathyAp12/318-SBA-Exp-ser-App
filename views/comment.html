@@ -14,7 +14,7 @@
         <li><%= comment.text %> by User <%= comment.userId %></li>
       <% }); %>
     </ul>
-    <form action="/comments" method="POST">
+    <form action="/commentData" method="POST">
       <input type="hidden" name="quizId" value="<%= quizId %>">
       <label for="userId">User ID:</label>
       <input type="text" id="userId" name="userId" required>
