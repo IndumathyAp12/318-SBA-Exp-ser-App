@@ -5,7 +5,7 @@ const validateUserMiddleware = require('../middleware/validateUserMiddleware');
 
 router.get('/', (req, res) => {
   const users = userData.getAllUsers();
-  res.json(users);
+  res.render('manageUsers',{users});
 });
 
 router.get('/:userId', (req, res) => {
