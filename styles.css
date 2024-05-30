@@ -6,25 +6,35 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-.quiz-container {
-    background: rgb(231, 167, 167);
     flex-direction: column;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+}
+.container {
+    color: #e91b6a;
     text-align: center;
-}
-
-
-.footer{
-    margin-top: 20px;
+    padding: 1em 0;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
     flex-direction: column;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
+  }
+
+.topnav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 30px;
+    gap: 20px;
+    }
+  
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0%;
+    width: 100%;
+  }
