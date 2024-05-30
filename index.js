@@ -23,8 +23,7 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-
-app.use(loggerMiddleware);
+app.use(loggerMiddleware); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,18 +40,13 @@ const questions = [
 
 // Routes
 app.get('/api/questions', (req, res) => {
-    res.json(questions);
-});
-
-// Route handler for /api/questions
-app.get('/api/questions', (req, res) => {
     const { category } = req.query;
 
     let filteredQuestions = questions;
     if (category) {
         filteredQuestions = questions.filter(q => q.category === category);
     }
-    res.render('questions', { questions: filteredQuestions });
+    res.json(filteredQuestions);
 });
 
 app.post('/api/submit', (req, res) => {
@@ -67,7 +61,6 @@ app.post('/api/submit', (req, res) => {
         res.send('Incorrect!');
     }
 });
-
 
 app.get('/manageUsers', (req, res) => {
     res.sendFile('manageUsers.html', {
