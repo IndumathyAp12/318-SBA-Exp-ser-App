@@ -62,8 +62,8 @@ app.post('/api/submit', (req, res) => {
     }
 });
 
-app.get('/manageUsers', (req, res) => {
-    res.sendFile('manageUsers.html', {
+app.get('/quizapp', (req, res) => {
+    res.sendFile('quizapp.html', {
         root: path.join(__dirname, 'views')
     });
 });
