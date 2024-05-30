@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const commentData = require('../data/commentData');
+const commentData = require('../data/commentData.js');
 
 router.get('/', (req, res) => {
   const comments = commentData.getAllComments();

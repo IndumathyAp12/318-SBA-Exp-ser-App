@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const quizData = require('../data/quizData');
-const commentData = require('../data/commentData');
+const commentData = require('../data/commentData.js');
 
 router.get('/', (req, res) => {
     const quizzes = quizData.getAllQuizzes();

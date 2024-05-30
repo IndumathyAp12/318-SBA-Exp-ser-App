@@ -1,76 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Quiz App</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/quizzes">All Quizzes</a></li>
-                    <li><a href="/quizzes/new">Create Quiz</a></li>
-                </ul>
-            </nav>
-        </header>
-        <section id="quizList">
-            <h2>All Quizzes</h2>
-            <ul>
-                <% quizzes.forEach(quiz => { %>
-                    <li><a href="/quizzes/<%= quiz.id %>"><%= quiz.question %></a></li>
-                <% }); %>
-            </ul>
-        </section>
-
-        <% if (quiz) { %>
-        <section id="quizDetails">
-            <h2>Quiz: <%= quiz.question %></h2>
-            <div class="question">
-                <p><strong>Question:</strong> <%= quiz.question %></p>
-                <ul>
-                    <% quiz.options.forEach(option => { %>
-                        <li><%= option %></li>
-                    <% }); %>
-                </ul>
-                <p><strong>Answer:</strong> <%= quiz.answer %></p>
-                <a href="/comments/quiz/<%= quiz.id %>">View Comments</a>
-            </div>
-        </section>
-        <% } %>
-
-        <% if (comments) { %>
-        <section id="commentsSection">
-            <h2>Comments</h2>
-            <ul>
-                <% comments.forEach(comment => { %>
-                    <li><%= comment.text %> - by User <%= comment.userId %></li>
-                <% }); %>
-            </ul>
-        </section>
-        <% } %>
-
-        <% if (showForm) { %>
-        <section id="addQuiz">
-            <h2>Create New Quiz</h2>
-            <form action="/quizData" method="POST">
-                <label for="question">Question:</label>
-                <input type="text" id="question" name="question" required>
-                <br>
-                <label for="options">Options (comma separated):</label>
-                <input type="text" id="options" name="options" required>
-                <br>
-                <label for="answer">Answer:</label>
-                <input type="text" id="answer" name="answer" required>
-                <br>
-                <button type="submit">Create Quiz</button>
-            </form>
-        </section>
-        <% } %>
+    <div class="quiz-container">
+        <h1>Welcome to the Quiz App</h1>
     </div>
+    <div class="container2">
+        <ul class="quiz-options"></ul>
+        <button id="next" style="display:none;">Next Question</button>
+    </div>
+
 </body>
+<footer>
+    <h1>Quiz Result</h1>
+    <p>Your Score: out of </p>
+    <a href="/quiz">Try Again</a>
+    </footer>
+
 </html>
